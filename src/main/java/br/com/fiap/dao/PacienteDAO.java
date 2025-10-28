@@ -39,7 +39,11 @@ public class PacienteDAO {
     public PacienteTO save(PacienteTO pacienteTO){
         String sql = "insert into paciente (idlogradouro, nome, datanascimento, cpf) values(?, ?, ?, ?)";
         try(PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)){
-            ps.setLong(1, pacienteTO.getIdLogradouro());
+            if (pacienteTO.getIdLogradouro() != null) {
+                ps.setLong(1, pacienteTO.getIdLogradouro());
+            } else {
+                ps.setNull(1, java.sql.Types.BIGINT);
+            }
             ps.setString(2, pacienteTO.getNome());
             ps.setDate(3, Date.valueOf(pacienteTO.getDataNascimento()));
             ps.setString(4, pacienteTO.getCpf());
@@ -96,7 +100,11 @@ public class PacienteDAO {
     public PacienteTO update(PacienteTO pacienteTO) {
         String sql = "update paciente set idlogradouro = ?, nome = ?, datanascimento = ?, cpf = ? where idpaciente = ?";
         try(PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)){
-            ps.setLong(1, pacienteTO.getIdLogradouro());
+            if (pacienteTO.getIdLogradouro() != null) {
+                ps.setLong(1, pacienteTO.getIdLogradouro());
+            } else {
+                ps.setNull(1, java.sql.Types.BIGINT);
+            }
             ps.setString(2, pacienteTO.getNome());
             ps.setDate(3, Date.valueOf(pacienteTO.getDataNascimento()));
             ps.setString(4, pacienteTO.getCpf());
