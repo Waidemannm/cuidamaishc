@@ -1,6 +1,7 @@
 package br.com.fiap.to;
 
 import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.Length;
 
 public class LogradouroTO {
     //atributos
@@ -10,10 +11,9 @@ public class LogradouroTO {
     @NotNull(message = "O número não deve ser vazio.")
     @PositiveOrZero(message = "O número deve ser positivo.")
     private int numero;
-    @NotNull(message = "O CEP náo deve ser vazio.")
-    @Min(value = 10000000, message = "O CEP deve ter 8 dígitos.")
-    @Max(value = 99999999, message = "O CEP deve ter 8 dígitos.")
-    private int cep;
+    @NotBlank(message = "O CEP não deve ser vazio.")
+    @Length(min = 8, max = 8, message = "O CEP deve ter exatamente 8 dígitos.")
+    private String cep;
     @NotBlank(message = "O nome do Bairro não deve ser vazio.")
     private String bairro;
     @NotBlank(message = "O nome da Cidade não deve ser vazio.")
@@ -25,7 +25,7 @@ public class LogradouroTO {
     public LogradouroTO() {
     }
 
-    public LogradouroTO(int numero, String nomeLogradouro, Long idLogradouro, int cep, String bairro, String cidade, String sgEstado) {
+    public LogradouroTO(int numero, String nomeLogradouro, Long idLogradouro, String cep, String bairro, String cidade, String sgEstado) {
         this.numero = numero;
         this.nomeLogradouro = nomeLogradouro;
         this.idLogradouro = idLogradouro;
@@ -59,11 +59,11 @@ public class LogradouroTO {
         this.numero = numero;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
