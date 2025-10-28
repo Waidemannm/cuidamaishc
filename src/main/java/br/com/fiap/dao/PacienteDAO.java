@@ -37,7 +37,7 @@ public class PacienteDAO {
     }
 
     public PacienteTO save(PacienteTO pacienteTO){
-        String sql = "insert into paciente (idlogradouro, nome, datanascimento, cpf) values(?, ?, ?, ?)";
+        String sql = "insert into paciente (idlogradouro, nome, datanascimento, cpf, senha) values(?, ?, ?, ?, ?)";
         try(PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)){
             if (pacienteTO.getIdLogradouro() != null) {
                 ps.setLong(1, pacienteTO.getIdLogradouro());
@@ -46,11 +46,8 @@ public class PacienteDAO {
             }
             ps.setString(2, pacienteTO.getNome());
             ps.setDate(3, Date.valueOf(pacienteTO.getDataNascimento()));
-            if (pacienteTO.getDataNascimento() != null) {
-                ps.setDate(4, Date.valueOf(pacienteTO.getDataNascimento()));
-            } else {
-                ps.setNull(4, java.sql.Types.DATE);
-            }
+            ps.setDate(4, Date.valueOf(pacienteTO.getDataNascimento()));
+            ps.setString(5, pacienteTO.getSenha());
             if (ps.executeUpdate() > 0) {
                 return pacienteTO;
             } else {
@@ -102,7 +99,7 @@ public class PacienteDAO {
     }
 
     public PacienteTO update(PacienteTO pacienteTO) {
-        String sql = "update paciente set idlogradouro = ?, nome = ?, datanascimento = ?, cpf = ? where idpaciente = ?";
+        String sql = "update paciente set idlogradouro = ?, nome = ?, datanascimento = ?, cpf = ?, senha = ? where idpaciente = ?";
         try(PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)){
             if (pacienteTO.getIdLogradouro() != null) {
                 ps.setLong(1, pacienteTO.getIdLogradouro());
@@ -113,6 +110,7 @@ public class PacienteDAO {
             ps.setDate(3, Date.valueOf(pacienteTO.getDataNascimento()));
             ps.setString(4, pacienteTO.getCpf());
             ps.setLong(5, pacienteTO.getIdPaciente());
+            ps.setString(6, pacienteTO.getSenha());
             if (ps.executeUpdate() > 0){
                 return pacienteTO;
             }else{
