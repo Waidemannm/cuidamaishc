@@ -1,4 +1,4 @@
-package br.com.fiap.controller;
+package br.com.fiap.resource;
 
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerResponseContext;
@@ -18,5 +18,4 @@ public class CorsFilter implements ContainerResponseFilter {
         response.getHeaders().add("Access-Control-Allow-Credentials", "true");
         response.getHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
     }
-
 }
