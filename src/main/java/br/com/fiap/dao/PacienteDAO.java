@@ -23,6 +23,7 @@ public class PacienteDAO {
                     pacienteTO.setNome(rs.getString("nome"));
                     pacienteTO.setDataNascimento(rs.getDate("datanascimento").toLocalDate());
                     pacienteTO.setCpf(rs.getString("cpf"));
+                    pacienteTO.setSenha(rs.getString("senha"));
                     pacientes.add(pacienteTO);
                 }
             } else {
@@ -73,6 +74,7 @@ public class PacienteDAO {
                 pacienteTO.setNome(rs.getString("nome"));
                 pacienteTO.setDataNascimento(rs.getDate("datanascimento").toLocalDate());
                 pacienteTO.setCpf(rs.getString("cpf"));
+                pacienteTO.setSenha(rs.getString("senha"));
                 return pacienteTO;
             }else {
                 return null;
