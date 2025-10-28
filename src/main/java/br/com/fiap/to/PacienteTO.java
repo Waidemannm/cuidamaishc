@@ -8,7 +8,6 @@ import java.time.LocalDate;
 public class PacienteTO extends PessoaTO{
     //Atributos
     private Long idPaciente;
-    @NotNull
     @Positive(message = "O ID deve ser um número positivo.")
     private Long idLogradouro;
     //construtores
