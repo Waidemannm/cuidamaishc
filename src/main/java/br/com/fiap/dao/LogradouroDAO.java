@@ -19,7 +19,7 @@ public class LogradouroDAO{
                     logradouroTO.setIdLogradouro(rs.getLong("idlogradouro"));
                     logradouroTO.setNomeLogradouro(rs.getString("nomelogradouro"));
                     logradouroTO.setNumero(rs.getInt("numero"));
-                    logradouroTO.setCep(rs.getInt("cep"));
+                    logradouroTO.setCep(rs.getString("cep"));
                     logradouroTO.setBairro(rs.getString("bairro"));
                     logradouroTO.setCidade(rs.getString("cidade"));
                     logradouroTO.setSgEstado(rs.getString("sgestado"));
@@ -41,7 +41,7 @@ public class LogradouroDAO{
         try(PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)){
             ps.setString(1, logradouroTO.getNomeLogradouro());
             ps.setInt(2, logradouroTO.getNumero());
-            ps.setInt(3, logradouroTO.getCep());
+            ps.setString(3, logradouroTO.getCep());
             ps.setString(4, logradouroTO.getBairro());
             ps.setString(5, logradouroTO.getCidade());
             ps.setString(6, logradouroTO.getSgEstado());
@@ -69,7 +69,7 @@ public class LogradouroDAO{
                 logradouroTO.setIdLogradouro(rs.getLong("idlogradouro"));
                 logradouroTO.setNomeLogradouro(rs.getString("nomelogradouro"));
                 logradouroTO.setNumero(rs.getInt("numero"));
-                logradouroTO.setCep(rs.getInt("cep"));
+                logradouroTO.setCep(rs.getString("cep"));
                 logradouroTO.setBairro(rs.getString("bairro"));
                 logradouroTO.setCidade(rs.getString("cidade"));
                 logradouroTO.setSgEstado(rs.getString("sgestado"));
@@ -103,7 +103,7 @@ public class LogradouroDAO{
         try(PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)){
             ps.setString(1, logradouroTO.getNomeLogradouro());
             ps.setInt(2, logradouroTO.getNumero());
-            ps.setInt(3, logradouroTO.getCep());
+            ps.setString(3, logradouroTO.getCep());
             ps.setString(4, logradouroTO.getBairro());
             ps.setString(5, logradouroTO.getCidade());
             ps.setString(6, logradouroTO.getSgEstado());
