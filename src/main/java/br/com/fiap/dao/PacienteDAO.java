@@ -46,7 +46,11 @@ public class PacienteDAO {
             }
             ps.setString(2, pacienteTO.getNome());
             ps.setDate(3, Date.valueOf(pacienteTO.getDataNascimento()));
-            ps.setString(4, pacienteTO.getCpf());
+            if (pacienteTO.getDataNascimento() != null) {
+                ps.setDate(4, Date.valueOf(pacienteTO.getDataNascimento()));
+            } else {
+                ps.setNull(4, java.sql.Types.DATE);
+            }
             if (ps.executeUpdate() > 0) {
                 return pacienteTO;
             } else {
