@@ -47,7 +47,7 @@ public class PacienteDAO {
             }
             ps.setString(2, pacienteTO.getNome());
             ps.setDate(3, Date.valueOf(pacienteTO.getDataNascimento()));
-            ps.setDate(4, Date.valueOf(pacienteTO.getDataNascimento()));
+            ps.setString(4, pacienteTO.getCpf());
             ps.setString(5, pacienteTO.getSenha());
             if (ps.executeUpdate() > 0) {
                 return pacienteTO;
@@ -111,8 +111,8 @@ public class PacienteDAO {
             ps.setString(2, pacienteTO.getNome());
             ps.setDate(3, Date.valueOf(pacienteTO.getDataNascimento()));
             ps.setString(4, pacienteTO.getCpf());
-            ps.setLong(5, pacienteTO.getIdPaciente());
-            ps.setString(6, pacienteTO.getSenha());
+            ps.setString(5, pacienteTO.getSenha());
+            ps.setLong(6, pacienteTO.getIdPaciente());
             if (ps.executeUpdate() > 0){
                 return pacienteTO;
             }else{
