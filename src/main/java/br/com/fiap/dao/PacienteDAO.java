@@ -18,7 +18,7 @@ public class PacienteDAO {
             if (rs != null){
                 while (rs.next()){
                     PacienteTO pacienteTO = new PacienteTO();
-                    pacienteTO.setIdPaciente(rs.getLong("idPaciente"));
+                    pacienteTO.setIdPaciente(rs.getLong("idpaciente"));
                     pacienteTO.setIdLogradouro(rs.getLong("idlogradouro"));
                     pacienteTO.setNome(rs.getString("nome"));
                     pacienteTO.setDataNascimento(rs.getDate("datanascimento").toLocalDate());
@@ -67,7 +67,7 @@ public class PacienteDAO {
             ResultSet rs = ps.executeQuery();
             if (rs != null){
                 PacienteTO pacienteTO = new PacienteTO();
-                pacienteTO.setIdPaciente(rs.getLong("idPaciente"));
+                pacienteTO.setIdPaciente(rs.getLong("idpaciente"));
                 pacienteTO.setIdLogradouro(rs.getLong("idlogradouro"));
                 pacienteTO.setNome(rs.getString("nome"));
                 pacienteTO.setDataNascimento(rs.getDate("datanascimento").toLocalDate());

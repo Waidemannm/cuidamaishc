@@ -9,7 +9,7 @@ import jakarta.ws.rs.core.Response;
 
 import java.util.ArrayList;
 
-@Path("/unidadeHC")
+@Path("/unidadehc")
 public class UnidadeHCResource {
     //atributos
     private UnidadeHCBO unidadeHCBO = new UnidadeHCBO();
