@@ -54,7 +54,7 @@ public class TelefonePacienteDAO{
     }
 
     public TelefonePacienteTO findById(Long id){
-        String sql = "select * from telefonepaciente where idTelefone = ?";
+        String sql = "select * from telefonepaciente where idtelefone = ?";
         try(PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql))
         {
             ps.setLong(1, id);
@@ -90,7 +90,7 @@ public class TelefonePacienteDAO{
         return false;
     }
     public TelefonePacienteTO update(TelefonePacienteTO telefonePacienteTO) {
-        String sql = "update telefonepaciente set idlogradouro = ?, nomeunidade = ?, datafundacao = ? where idTelefone = ?";
+        String sql = "update telefonepaciente set idpaciente = ?, ddd = ?, numero = ? where idtelefone = ?";
         try(PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)){
             ps.setLong(1, telefonePacienteTO.getIdPaciente());
             ps.setInt(2, telefonePacienteTO.getDdd());
