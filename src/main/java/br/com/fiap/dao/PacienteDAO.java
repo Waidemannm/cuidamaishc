@@ -67,7 +67,7 @@ public class PacienteDAO {
         try(PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)){
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
-            if (rs != null){
+            if (rs.next()){
                 PacienteTO pacienteTO = new PacienteTO();
                 pacienteTO.setIdPaciente(rs.getLong("idpaciente"));
                 pacienteTO.setIdLogradouro(rs.getLong("idlogradouro"));
