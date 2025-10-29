@@ -84,6 +84,7 @@ public class TelefonePacienteResource {
         } else {
             response = Response.status(400);
         }
+        response.entity(resultado);
         return response.build();
     }
 }

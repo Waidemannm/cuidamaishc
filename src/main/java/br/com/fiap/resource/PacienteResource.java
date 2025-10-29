@@ -84,6 +84,7 @@ public class PacienteResource {
         } else {
             response = Response.status(400);
         }
+        response.entity(resultado);
         return response.build();
     }
 }
