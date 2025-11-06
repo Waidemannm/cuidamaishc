@@ -1,6 +1,7 @@
 package br.com.fiap.dao;
 
 import br.com.fiap.to.MedicoTO;
+import br.com.fiap.to.PacienteTO;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -76,6 +77,30 @@ public class MedicoDAO{
             }
         }catch (SQLException e) {
             System.out.println("Erro ao consultar um Médico da tabela: " + e.getMessage());
+        } finally {
+            ConnectionFactory.closeConnection();
+        }
+        return null;
+    }
+
+    public MedicoTO findByCpf(String cpf) {
+        String sql = "select * from medico where cpf= ?";
+        try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
+            ps.setString(1, cpf);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                MedicoTO medicoTO = new MedicoTO();
+                medicoTO.setIdMedico(rs.getLong("idmedico"));
+                medicoTO.setCrm(rs.getInt("crm"));
+                medicoTO.setEspecialidade(rs.getString("especialidade"));
+                medicoTO.setNome(rs.getString("nome"));
+                medicoTO.setDataNascimento(rs.getDate("datanascimento").toLocalDate());
+                return medicoTO;
+            }else {
+                return null;
+            }
+        }catch (SQLException e) {
+            System.out.println("Erro ao cadastrar" + e.getMessage());
         } finally {
             ConnectionFactory.closeConnection();
         }

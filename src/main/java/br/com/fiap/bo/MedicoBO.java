@@ -18,6 +18,12 @@ public class MedicoBO {
         if (medicoTO.getCpf() == null || medicoTO.getCpf().length() != 11){
             return null;
         }
+        MedicoTO existente = medicoDAO.findByCpf(medicoTO.getCpf());
+        if (existente != null) {
+            // Retorna null ou lança exceção (opcional)
+            System.out.println("CPF já cadastrado: " + medicoTO.getCpf());
+            return null;
+        }
         return medicoDAO.save(medicoTO);
     }
     public MedicoTO findById(Long id){
@@ -31,6 +37,12 @@ public class MedicoBO {
     public MedicoTO update(MedicoTO medicoTO) {
         medicoDAO = new MedicoDAO();
         if (medicoTO.getCpf() == null || medicoTO.getCpf().length() != 11){
+            return null;
+        }
+        MedicoTO existente = medicoDAO.findByCpf(medicoTO.getCpf());
+        if (existente != null) {
+            // Retorna null ou lança exceção (opcional)
+            System.out.println("CPF já cadastrado: " + medicoTO.getCpf());
             return null;
         }
         return medicoDAO.update(medicoTO);

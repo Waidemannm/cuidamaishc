@@ -86,7 +86,6 @@ public class PacienteDAO {
         }
         return null;
     }
-
     public boolean delete(Long id){
         String sql = "delete from paciente where idpaciente = ?";
         try(PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)){
@@ -120,6 +119,30 @@ public class PacienteDAO {
             }
         }catch (SQLException e) {
             System.out.println("Erro ao atualizar um paciente da tabela: " + e.getMessage());
+        } finally {
+            ConnectionFactory.closeConnection();
+        }
+        return null;
+    }
+    public PacienteTO findByCpf(String cpf) {
+        String sql = "select * from paciente where cpf= ?";
+        try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
+            ps.setString(1, cpf);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                PacienteTO pacienteTO = new PacienteTO();
+                pacienteTO.setIdPaciente(rs.getLong("idpaciente"));
+                pacienteTO.setIdLogradouro(rs.getLong("idlogradouro"));
+                pacienteTO.setNome(rs.getString("nome"));
+                pacienteTO.setDataNascimento(rs.getDate("datanascimento").toLocalDate());
+                pacienteTO.setCpf(rs.getString("cpf"));
+                pacienteTO.setSenha(rs.getString("senha"));
+                return pacienteTO;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao cadastrar: " + e.getMessage());
         } finally {
             ConnectionFactory.closeConnection();
         }

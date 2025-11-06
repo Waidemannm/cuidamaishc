@@ -18,6 +18,11 @@ public class PacienteBO{
         if (pacienteTO.getCpf() == null || pacienteTO.getCpf().length() != 11){
             return null;
         }
+        PacienteTO existente = pacienteDAO.findByCpf(pacienteTO.getCpf());
+        if (existente != null) {
+            System.out.println("CPF já cadastrado: " + pacienteTO.getCpf());
+            return null;
+        }
         return pacienteDAO.save(pacienteTO);
     }
     public PacienteTO findById(Long id){
@@ -31,6 +36,12 @@ public class PacienteBO{
     public PacienteTO update(PacienteTO pacienteTO) {
         pacienteDAO = new PacienteDAO();
         if (pacienteTO.getCpf() == null || pacienteTO.getCpf().length() != 11){
+            return null;
+        }
+        PacienteTO existente = pacienteDAO.findByCpf(pacienteTO.getCpf());
+        if (existente != null) {
+            // Retorna null ou lança exceção (opcional)
+            System.out.println("CPF já cadastrado: " + pacienteTO.getCpf());
             return null;
         }
         return pacienteDAO.update(pacienteTO);
